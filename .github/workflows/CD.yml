@@ -20,4 +20,5 @@ jobs:
       - name: Delete old Frontend Docker Image
         run: sudo docker rm -f sergioalcala/ec-2-frontend || true
       - name: Run docker-compose
+        working-directory: ${{ github.workspace }}
         run: sudo docker-compose -f docker-compose.yml up -d
