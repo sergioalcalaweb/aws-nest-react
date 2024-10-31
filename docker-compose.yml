@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:4000"  # Map port 5173 in the container to 3001 on the host
+    environment:
+      NODE_ENV: production
+    command: npm run dev -- --port 4000 --host
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
