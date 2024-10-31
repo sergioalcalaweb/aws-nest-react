@@ -14,13 +14,15 @@ jobs:
       - name: Pull Backend Docker Image
         run: sudo docker pull sergioalcala/ec-2-backend:latest
       - name: Delete old Backend Docker Image
-        run: sudo docker rm -f sergioalcala/ec-2-backend || true
+        run: sudo docker rm -f sergioalcala/ec-2-backend:latest || true
       - name: Pull Frontend Docker Image
         run: sudo docker pull sergioalcala/ec-2-frontend:latest
       - name: Delete old Frontend Docker Image
-        run: sudo docker rm -f sergioalcala/ec-2-frontend || true
+        run: sudo docker rm -f sergioalcala/ec-2-frontend:latest || true
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Run docker-compose
         working-directory: ${{ github.workspace }}
-        run: sudo docker-compose -f docker-compose.yml up -d
+        run: |
+          docker-compose down               
+          docker-compose up -d --build
