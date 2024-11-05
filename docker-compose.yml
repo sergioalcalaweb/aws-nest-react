@@ -17,7 +17,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3001:4000"  # Map port 5173 in the container to 3001 on the host
+      - "3001:5173"
     environment:
       NODE_ENV: production
     command: npm run dev -- --port 4000 --host
