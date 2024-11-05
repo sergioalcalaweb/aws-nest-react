@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: sergioalcala/ec-2-backend:latest
     ports:
       - "3000:3000"
     environment:
@@ -13,11 +11,9 @@ services:
       - app-network
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: sergioalcala/ec-2-frontend:latest
     ports:
-      - "3001:5173"
+      - "3001:4000"
     environment:
       NODE_ENV: production
     command: npm run dev -- --port 4000 --host
