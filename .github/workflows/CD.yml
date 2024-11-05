@@ -14,11 +14,11 @@ jobs:
       - name: Pull Backend Docker Image
         run: sudo docker pull sergioalcala/ec-2-backend:latest
       - name: Delete old Backend Docker Image
-        run: sudo docker rm -f sergioalcala/ec-2-backend:latest || true
+        run: sudo docker rm -f sergioalcala/ec-2-backend || true
       - name: Pull Frontend Docker Image
         run: sudo docker pull sergioalcala/ec-2-frontend:latest
       - name: Delete old Frontend Docker Image
-        run: sudo docker rm -f sergioalcala/ec-2-frontend:latest || true
+        run: sudo docker rm -f sergioalcala/ec-2-frontend || true
       - name: Run Backend Docker Image
         run: sudo docker run -d -p 3000:3000 --name ec-2-backend sergioalcala/ec-2-backend:latest
       - name: Run Frontend Docker Image
