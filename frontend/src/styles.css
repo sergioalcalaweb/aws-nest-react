@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.main-header {
+  view-transition-name: main-header;
+  contain: layout;
+}
+
+.main-header-text {
+  view-transition-name: main-header-text;
+  contain: layout;
+  width: fit-content;
+}
+
+.banner-img {
+  display: block;
+  background: #fff;
+}
+
+.gallery-container img {
+  contain: layout;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-30px); }
+}
+
+::view-transition-old(root), 
+::view-transition-new(root) {
+  animation-duration: 400ms;
+}
+
+::view-transition-old(banner-img),
+::view-transition-new(banner-img) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(banner-img) {
+  isolation: none;
+}

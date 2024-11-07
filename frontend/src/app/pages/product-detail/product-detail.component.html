@@ -1,0 +1,9 @@
+<main>
+  <div class="banner-img">
+    <img [ngSrc]="product.images[0]" [alt]="product.title" width="600" height="800" priority />
+  </div>
+  <div class="content">
+    <h1 class="content-title">{{product.title | titlecase}}</h1>
+    <div [innerHTML]="product.description"></div>
+  </div>
+</main>

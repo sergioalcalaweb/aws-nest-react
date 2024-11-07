@@ -1,0 +1,26 @@
+<main>
+  <div class="banner-img">
+    <img [ngSrc]="recipe.image" [alt]="recipe.name" width="2340" height="1316" priority />
+  </div>
+  <div class="content">
+    <h1 class="content-title">{{recipe.name | titlecase}}</h1>
+
+    <h2>Ingredients</h2>
+    <ul>
+      @for (ingredient of recipe.ingredients; track $index) {
+        <li>
+          {{ingredient}}
+        </li>
+      }
+    </ul>
+
+    <h2>Instructions</h2>
+    <ul>
+      @for (instruction of recipe.instructions; track $index) {
+        <li>
+          {{instruction}}
+        </li>
+      }
+    </ul>
+  </div>
+</main>
