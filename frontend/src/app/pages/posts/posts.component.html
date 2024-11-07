@@ -1,0 +1,21 @@
+@if(isClient) {
+  <cdk-virtual-scroll-viewport itemSize="50" scrollWindow class="posts-container">
+    <div *cdkVirtualFor="let post of posts" class="post-item">
+      <mat-card (click)="goToPostDetail(post)" class="card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{post.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-chip-set aria-label="post tags">
+            @for (tag of post.tags; track $index) {
+              <mat-chip>{{ tag | titlecase }}</mat-chip>
+            }
+          </mat-chip-set>
+        </mat-card-content>
+        <mat-card-footer class="card-footer">
+          <button mat-button>Read More</button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </cdk-virtual-scroll-viewport>
+}

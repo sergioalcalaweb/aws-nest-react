@@ -1,0 +1,12 @@
+@if(isClient) {
+  <div class="products-container">
+    @for (product of products; track $index) {
+      <div class="product-item">
+        <a [routerLink]="['/products', product.id]">
+          <img appViewTransition="product-image" [id]="product.id" [ngSrc]="product.thumbnail" [alt]="product.brand" height="300" width="300" />
+          <span class="product-title">{{product.title | titlecase}} - {{ product.id }}</span>
+        </a>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,13 @@
+@if(isClient) {
+  <cdk-virtual-scroll-viewport itemSize="270" scrollWindow class="recipes-container">
+    <ul *cdkVirtualFor="let recipe of recipes" class="gallery">
+      <li class="gallery-item">
+        <a (click)="goToRecipeDetail(recipe)">
+          <img appViewTransition="banner-img" [id]="recipe.id"  [ngSrc]="recipe.image" [alt]="recipe.name" height="250" width="250" priority />
+          <span class="gallery-item-title">{{recipe.name | titlecase}}</span>
+        </a>
+      </li>
+    </ul>
+  </cdk-virtual-scroll-viewport>
+}
+

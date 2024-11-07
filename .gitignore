@@ -35,29 +35,24 @@ backend/!.vscode/launch.json
 backend/!.vscode/extensions.json
 
 
-# Logs
-frontend/logs
-frontend/*.log
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/pnpm-debug.log*
-frontend/lerna-debug.log*
-
-frontend/node_modules
 frontend/dist
-frontend/dist-ssr
-frontend/*.local
+frontend/tmp
+frontend/out-tsc
+frontend/bazel-out
+
+# Logs
+frontend/node_modules
+frontend/npm-debug.log
+frontend/yarn-error.log
+
+
 
 # Editor directories and files
 frontend/.vscode/*
 frontend/!.vscode/extensions.json
 frontend/.idea
 frontend/.DS_Store
-frontend/*.suo
-frontend/*.ntvs*
-frontend/*.njsproj
-frontend/*.sln
-frontend/*.sw?
+
 
 .DS_Store
+Thumbs.db
