@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Pull latest image versions
+        working-directory: ${{ github.workspace }}
+        run: sudo docker-compose pull
       - name: Run docker-compose
         working-directory: ${{ github.workspace }}
-        run: docker-compose up -d --build --remove-orphans
+        run: sudo docker-compose up -d --build --remove-orphans
