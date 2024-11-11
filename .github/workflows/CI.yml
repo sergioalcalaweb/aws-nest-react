@@ -22,11 +22,7 @@ jobs:
         run: docker push sergioalcala/ec-2-backend:latest
 
       - name: Build frontend the Docker image
-        run: docker build \
-          --platform linux/amd64 \
-          --build-arg API_URL=${{ secrets.API_URL }} \
-          --build-arg CLIENT_ID=${{ secrets.CLIENT_ID }} \
-          --build-arg AUTHORITY=${{ secrets.AUTHORITY }} \
-          -t sergioalcala/ec-2-frontend:latest -f ./frontend/Dockerfile ./frontend
+        run: docker buildx build --platform linux/amd64 --build-arg API_URL=${{ secrets.API_URL }} --build-arg CLIENT_ID=${{ secrets.CLIENT_ID }} --build-arg AUTHORITY=${{ secrets.AUTHORITY }} -t your-username/ec-2-frontend:latest -f ./frontend/Dockerfile ./frontend
+
       - name: Push frontend to dockerhub
         run: docker push sergioalcala/ec-2-frontend:latest
