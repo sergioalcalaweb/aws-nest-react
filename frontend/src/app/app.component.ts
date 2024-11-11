@@ -1,15 +1,15 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatButtonModule } from "@angular/material/button";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { Router, RouterLink, RouterOutlet } from "@angular/router";
 import {
   MsalService,
   MsalModule,
   MsalBroadcastService,
   MSAL_GUARD_CONFIG,
   MsalGuardConfiguration,
-} from '@azure/msal-angular';
+} from "@azure/msal-angular";
 import {
   AuthenticationResult,
   InteractionStatus,
@@ -17,19 +17,19 @@ import {
   RedirectRequest,
   EventMessage,
   EventType,
-} from '@azure/msal-browser';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
+} from "@azure/msal-browser";
+import { Subject } from "rxjs";
+import { filter, takeUntil } from "rxjs/operators";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
   standalone: true,
   imports: [
     CommonModule,
-    MsalModule,
+    // MsalModule,
     RouterOutlet,
     RouterLink,
     MatToolbarModule,
@@ -39,55 +39,55 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly _destroying$ = new Subject<void>();
-  title = 'Recipes';
+  title = "Recipes";
   isIframe = false;
   loginDisplay = false;
 
   constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService,
+    // @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    // private authService: MsalService,
+    // private msalBroadcastService: MsalBroadcastService,
     public router: Router
   ) {}
 
   ngOnInit(): void {
-    this.authService.handleRedirectObservable().subscribe();
+    // this.authService.handleRedirectObservable().subscribe();
     // this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
 
     this.setLoginDisplay();
 
-    this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
-    this.msalBroadcastService.msalSubject$
-      .pipe(
-        filter(
-          (msg: EventMessage) =>
-            msg.eventType === EventType.ACCOUNT_ADDED ||
-            msg.eventType === EventType.ACCOUNT_REMOVED
-        )
-      )
-      .subscribe(() => {
-        if (this.authService.instance.getAllAccounts().length === 0) {
-          window.location.pathname = '/';
-        } else {
-          this.setLoginDisplay();
-        }
-      });
+    // this.authService.instance.enableAccountStorageEvents(); // Optional - This will enable ACCOUNT_ADDED and ACCOUNT_REMOVED events emitted when a user logs in or out of another tab or window
+    // this.msalBroadcastService.msalSubject$
+    //   .pipe(
+    //     filter(
+    //       (msg: EventMessage) =>
+    //         msg.eventType === EventType.ACCOUNT_ADDED ||
+    //         msg.eventType === EventType.ACCOUNT_REMOVED
+    //     )
+    //   )
+    //   .subscribe(() => {
+    //     if (this.authService.instance.getAllAccounts().length === 0) {
+    //       window.location.pathname = "/";
+    //     } else {
+    //       this.setLoginDisplay();
+    //     }
+    //   });
 
-    this.msalBroadcastService.inProgress$
-      .pipe(
-        filter(
-          (status: InteractionStatus) => status === InteractionStatus.None
-        ),
-        takeUntil(this._destroying$)
-      )
-      .subscribe(() => {
-        this.setLoginDisplay();
-        this.checkAndSetActiveAccount();
-      });
+    // this.msalBroadcastService.inProgress$
+    //   .pipe(
+    //     filter(
+    //       (status: InteractionStatus) => status === InteractionStatus.None
+    //     ),
+    //     takeUntil(this._destroying$)
+    //   )
+    //   .subscribe(() => {
+    //     this.setLoginDisplay();
+    //     this.checkAndSetActiveAccount();
+    //   });
   }
 
   setLoginDisplay() {
-    this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
+    // this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
 
   checkAndSetActiveAccount() {
@@ -96,51 +96,50 @@ export class AppComponent implements OnInit, OnDestroy {
      * To use active account set here, subscribe to inProgress$ first in your component
      * Note: Basic usage demonstrated. Your app may require more complicated account selection logic
      */
-    const activeAccount = this.authService.instance.getActiveAccount();
-
-    if (
-      !activeAccount &&
-      this.authService.instance.getAllAccounts().length > 0
-    ) {
-      const accounts = this.authService.instance.getAllAccounts();
-      this.authService.instance.setActiveAccount(accounts[0]);
-    }
+    // const activeAccount = this.authService.instance.getActiveAccount();
+    // if (
+    //   !activeAccount &&
+    //   this.authService.instance.getAllAccounts().length > 0
+    // ) {
+    //   const accounts = this.authService.instance.getAllAccounts();
+    //   this.authService.instance.setActiveAccount(accounts[0]);
+    // }
   }
 
   loginRedirect() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService.loginRedirect({
-        ...this.msalGuardConfig.authRequest,
-      } as RedirectRequest);
-    } else {
-      this.authService.loginRedirect();
-    }
+    // if (this.msalGuardConfig.authRequest) {
+    //   this.authService.loginRedirect({
+    //     ...this.msalGuardConfig.authRequest,
+    //   } as RedirectRequest);
+    // } else {
+    //   this.authService.loginRedirect();
+    // }
   }
 
   loginPopup() {
-    if (this.msalGuardConfig.authRequest) {
-      this.authService
-        .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
-        .subscribe((response: AuthenticationResult) => {
-          this.authService.instance.setActiveAccount(response.account);
-        });
-    } else {
-      this.authService
-        .loginPopup()
-        .subscribe((response: AuthenticationResult) => {
-          this.authService.instance.setActiveAccount(response.account);
-        });
-    }
+    // if (this.msalGuardConfig.authRequest) {
+    //   this.authService
+    //     .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
+    //     .subscribe((response: AuthenticationResult) => {
+    //       this.authService.instance.setActiveAccount(response.account);
+    //     });
+    // } else {
+    //   this.authService
+    //     .loginPopup()
+    //     .subscribe((response: AuthenticationResult) => {
+    //       this.authService.instance.setActiveAccount(response.account);
+    //     });
+    // }
   }
 
   logout(popup?: boolean) {
-    if (popup) {
-      this.authService.logoutPopup({
-        mainWindowRedirectUri: '/',
-      });
-    } else {
-      this.authService.logoutRedirect();
-    }
+    // if (popup) {
+    //   this.authService.logoutPopup({
+    //     mainWindowRedirectUri: "/",
+    //   });
+    // } else {
+    //   this.authService.logoutRedirect();
+    // }
   }
 
   ngOnDestroy(): void {

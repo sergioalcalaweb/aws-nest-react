@@ -102,24 +102,23 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding(),
       withViewTransitions({ onViewTransitionCreated })
     ),
-    importProvidersFrom(MsalModule),
-    { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
-    {
-      provide: MSAL_INSTANCE,
-      useFactory: MSALInstanceFactory,
-    },
-    {
-      provide: MSAL_GUARD_CONFIG,
-      useFactory: MSALGuardConfigFactory,
-    },
-    {
-      provide: MSAL_INTERCEPTOR_CONFIG,
-      useFactory: MSALInterceptorConfigFactory,
-    },
-    MsalService,
-    MsalGuard,
-    MsalBroadcastService,
-    provideAnimationsAsync(),
+    // importProvidersFrom(MsalModule),
+    // { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true },
+    // {
+    //   provide: MSAL_INSTANCE,
+    //   useFactory: MSALInstanceFactory,
+    // },
+    // {
+    //   provide: MSAL_GUARD_CONFIG,
+    //   useFactory: MSALGuardConfigFactory,
+    // },
+    // {
+    //   provide: MSAL_INTERCEPTOR_CONFIG,
+    //   useFactory: MSALInterceptorConfigFactory,
+    // },
+    // MsalService,
+    // MsalGuard,
+    // MsalBroadcastService,
     provideAnimationsAsync(),
   ],
 };
