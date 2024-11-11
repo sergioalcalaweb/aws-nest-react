@@ -13,18 +13,17 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-
 ARG API_URL
 ARG CLIENT_ID
 ARG AUTHORITY
 
-RUN mkdir -p src/environments && \
-  echo "export const environment = {" > src/environments/environment.ts && \
-  echo "  production: true," >> src/environments/environment.ts && \
-  echo "  apiUrl: '$API_URL'," >> src/environments/environment.ts && \
-  echo "  clientID: '$CLIENT_ID'" >> src/environments/environment.ts && \
-  echo "  authority: '$AUTHORITY'" >> src/environments/environment.ts && \
-  echo "};" >> src/environments/environment.ts
+RUN mkdir -p src/app/environments && \
+  echo "export const environment = {" > src/app/environments/environment.ts && \
+  echo "  production: true," >> src/app/environments/environment.ts && \
+  echo "  apiUrl: '$API_URL'," >> src/app/environments/environment.ts && \
+  echo "  clientID: '$CLIENT_ID'," >> src/app/environments/environment.ts && \
+  echo "  authority: '$AUTHORITY'" >> src/app/environments/environment.ts && \
+  echo "};" >> src/app/environments/environment.ts
 
 
 # Build the Vite application
