@@ -1,62 +1,56 @@
-import { Route } from '@angular/router';
-import { MsalGuard } from '@azure/msal-angular';
-import { LoginComponent } from './pages/login/login.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { Route } from "@angular/router";
+import { MsalGuard } from "@azure/msal-angular";
+import { LoginComponent } from "./pages/login/login.component";
+import { ProductsComponent } from "./pages/products/products.component";
+import { ProductDetailComponent } from "./pages/product-detail/product-detail.component";
 import {
   productDetailResolver,
   productsResolver,
-} from './resolvers/products/products.resolver';
-import { PostsComponent } from './pages/posts/posts.component';
+} from "./resolvers/products/products.resolver";
+import { PostsComponent } from "./pages/posts/posts.component";
 import {
   postDetailResolver,
   postsResolver,
-} from './resolvers/posts/posts.resolver';
-import { PostDetailComponent } from './pages/post-detail/post-detail.component';
-import { RecipesComponent } from './pages/recipes/recipes.component';
+} from "./resolvers/posts/posts.resolver";
+import { PostDetailComponent } from "./pages/post-detail/post-detail.component";
+import { RecipesComponent } from "./pages/recipes/recipes.component";
 import {
   recipeDetailResolver,
   recipesResolver,
-} from './resolvers/recipes/recipies.resolver';
-import { RecipesDetailComponent } from './pages/recipes-detail/recipes-detail.component';
+} from "./resolvers/recipes/recipies.resolver";
+import { RecipesDetailComponent } from "./pages/recipes-detail/recipes-detail.component";
 
 export const appRoutes: Route[] = [
   {
-    path: '',
-    canActivate: [MsalGuard],
+    path: "",
     component: RecipesComponent,
     resolve: { recipes: recipesResolver },
   },
   {
-    path: 'recipes/:id',
-    canActivate: [MsalGuard],
+    path: "recipes/:id",
     component: RecipesDetailComponent,
     resolve: { recipe: recipeDetailResolver },
   },
   {
-    path: 'posts',
-    canActivate: [MsalGuard],
+    path: "posts",
     component: PostsComponent,
     resolve: { posts: postsResolver },
   },
   {
-    path: 'posts/:id',
-    canActivate: [MsalGuard],
+    path: "posts/:id",
     component: PostDetailComponent,
     resolve: { posts: postDetailResolver },
   },
   {
-    path: 'products',
-    canActivate: [MsalGuard],
+    path: "products",
     component: ProductsComponent,
     resolve: { products: productsResolver },
   },
   {
-    path: 'products/:id',
+    path: "products/:id",
     component: ProductDetailComponent,
-    canActivate: [MsalGuard],
     resolve: { product: productDetailResolver },
   },
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '' },
+  { path: "login", component: LoginComponent },
+  { path: "**", redirectTo: "" },
 ];
